@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemistry and Biology Learning</title>
+</head>
+<style>
+body {
+    background-image: url('https://static.vecteezy.com/system/resources/previews/022/006/638/large_2x/science-background-illustration-scientific-design-flasks-glass-and-chemistry-physics-elements-generative-ai-photo.jpeg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 50px;
+}
+
+#question-container {
+    margin-top: 50px;
+}
+
+#feedback {
+    margin-top: 20px;
+}
+
+input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ddd;
+}
+
+
+</style>
+<body>
+    <div class="container">
+        <h1>Welcome to Chemistry and Biology Learning</h1>
+        <div id="subject-selection">
+            <button id="chemistry-btn">Chemistry</button>
+            <button id="biology-btn">Biology</button>
+        </div>
+        <div id="question-container" style="display: none;">
+            <button id="home-btn">Back to Home</button>
+            <h2 id="question">Question goes here</h2>
+            <img id="question-image" src="" alt="Question Image">
+            <form id="answer-form">
+                <input type="text" id="answer" placeholder="Your answer">
+                <button type="submit">Submit</button>
+            </form>
+            <div id="feedback"></div>
+        </div>
+    </div>
+
+<script>
+const chemistryQuestions = [
+    { question: "What is the chemical symbol for water?", answer: "H2O", image: "water.jpg" },
+    { question: "What is the atomic number of carbon?", answer: "6", image: "carbon.jpg" },
+    { question: "What is the formula for sodium chloride?", answer: "NaCl", image: "salt.jpg" },
+    // Add more chemistry questions...
+];
+
+const biologyQuestions = [
+    { question: "What is the powerhouse of the cell?", answer: "Mitochondria", image: "mitochondria.jpg" },
+    { question: "What is the process by which plants make their food called?", answer: "Photosynthesis", image: "photosynthesis.jpg" },
+    // Add more biology questions...
+];
+
+const questionElement = document.getElementById("question");
+const questionImageElement = document.getElementById("question-image");
+const answerForm = document.getElementById("answer-form");
+const answerInput = document.getElementById("answer");
+const feedback = document.getElementById("feedback");
+const subjectSelection = document.getElementById("subject-selection");
+const questionContainer = document.getElementById("question-container");
+const homeButton = document.getElementById("home-btn");
+
+let currentQuestions = [];
+let currentQuestionIndex = 0;
+
+function displayQuestion() {
+    const currentQuestion = currentQuestions[currentQuestionIndex];
+    questionElement.textContent = currentQuestion.question;
+    questionImageElement.src = currentQuestion.image;
+}
+
+function checkAnswer(userAnswer) {
+    const correctAnswer = currentQuestions[currentQuestionIndex].answer;
+    if (userAnswer.trim().toLowerCase() === correctAnswer.toLowerCase()) {
+        feedback.textContent = "Correct!";
+    } else {
+        feedback.textContent = "Incorrect. Try again.";
+    }
+}
+
+answerForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+    const userAnswer = answerInput.value;
+    checkAnswer(userAnswer);
+    answerInput.value = ""; // Clear input field
+    // Go to the next question after 1.5 seconds
+    setTimeout(nextQuestion, 1500);
+});
+
+function nextQuestion() {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < currentQuestions.length) {
+        displayQuestion();
+        feedback.textContent = ""; // Clear feedback
+    } else {
+        alert("Congratulations! You've completed all questions.");
+    }
+}
+
+function selectSubject(subject) {
+    currentQuestions = subject === "chemistry" ? chemistryQuestions : biologyQuestions;
+    currentQuestionIndex = 0;
+    displayQuestion();
+    subjectSelection.style.display = "none";
+    questionContainer.style.display = "block";
+}
+
+document.getElementById("chemistry-btn").addEventListener("click", function() {
+    selectSubject("chemistry");
+});
+
+document.getElementById("biology-btn").addEventListener("click", function() {
+    selectSubject("biology");
+});
+
+homeButton.addEventListener("click", function() {
+    questionContainer.style.display = "none";
+    subjectSelection.style.display = "block";
+});
+
+</script>
+</body>
+</html>
