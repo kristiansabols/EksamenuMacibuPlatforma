@@ -7,24 +7,11 @@
 </head>
 <style>
 body {
-    background-image: url('https://cdn.hovia.com/app/uploads/scientific-chalkboard-childrens-plain.jpg');
-    background-size: cover;
-    background-repeat: no-repeat;
     font-family: Arial, sans-serif;
 }
 
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 50px;
-}
-
 #question-container {
-    margin-top: 50px;
+    margin-top: 30px;
 }
 
 #feedback {
@@ -47,15 +34,63 @@ button:hover {
     background-color: #ddd;
 }
 
+#question-image {
+    max-width: 400px;
+    margin: 20px auto;
+    display: block;
+}
 
+#correct-image {
+    max-width: 400px;
+    margin: 20px auto;
+    display: none;
+}
+
+button#give-up-btn {
+    margin-left: 20px;
+}
+
+button#prev-btn, button#give-up-btn, button#next-btn {
+    margin: 10px;
+}
+
+.video-background {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 50px;
+    position: relative; /* Add position relative for z-index */
+    z-index: 1; /* Ensure the content appears above the video */
+}
 </style>
 <body>
+    <video autoplay muted loop class="video-background">
+        <source src="./images/background.mp4" type="video/mp4">
+    </video>
     <div class="container">
         <h1>Gatavojies Uzvarai: Eksāmenu Mācību Platforma</h1>
+        <p id="website-description">Laipni lūdzam Gatavojies Uzvarai, eksāmenu mācību platformā! Izvēlies no dažādām tēmām un pārbaudi savas zināšanas.</p>
         <div id="subject-selection">
             <button id="chemistry-btn">Ķīmija</button>
             <button id="biology-btn">Bioloģija</button>
-            <button id="math-btn">Matemātika</button>
+            <button id="physics-btn">Fizika</button>
+            <button id="mathopt-btn">Matemātika (Optimālā)</button>
+            <button id="mathaug-btn">Matemātika (Augstākā)</button>
+            <button id="social-sciences-btn">Sociālās Zinātnes</button>
         </div>
         <div id="question-container" style="display: none;">
             <button id="home-btn">Back to Home</button>
@@ -65,32 +100,62 @@ button:hover {
                 <input type="text" id="answer" placeholder="Your answer">
                 <button type="submit">Submit</button>
             </form>
+            <img id="correct-image" src="" alt="Correct Answer Image" style="display: none;">
+            <div style="margin-top: 20px;">
+                <button id="prev-btn">Previous</button>
+                <button id="give-up-btn">Give Up</button>
+                <button id="next-btn">Next</button>
+            </div>
             <div id="feedback"></div>
         </div>
     </div>
 
 <script>
 const chemistryQuestions = [
-    { question: "What is the chemical symbol for water?", answer: "H2O", image: "water.jpg" },
-    { question: "What is the atomic number of carbon?", answer: "6", image: "carbon.jpg" },
-    { question: "What is the formula for sodium chloride?", answer: "NaCl", image: "salt.jpg" },
-    // Add more chemistry questions...
+    { question: "What is the chemical symbol for water?", answer: "H2O", image: "./images/water.jpg", correctImage: "./images/water-correct.jpg" },
+    { question: "What is the atomic number of carbon?", answer: "6", image: "./images/carbon.jpg", correctImage: "./images/carbon-correct.jpg" },
+    { question: "What is the formula for sodium chloride?", answer: "NaCl", image: "./images/salt.jpg", correctImage: "./images/salt-correct.jpg" }
 ];
 
 const biologyQuestions = [
-    { question: "What is the powerhouse of the cell?", answer: "Mitochondria", image: "mitochondria.jpg" },
-    { question: "What is the process by which plants make their food called?", answer: "Photosynthesis", image: "photosynthesis.jpg" },
-    // Add more biology questions...
+    { question: "What is the powerhouse of the cell?", answer: "Mitochondria", image: "./images/mitochondria.jpg", correctImage: "./images/mitochondria-correct.jpg" },
+    { question: "What is the process by which plants make their food called?", answer: "Photosynthesis", image: "./images/photosynthesis.jpg", correctImage: "./images/photosynthesis-correct.jpg" }
+];
+
+const mathoptQuestions = [
+    { question: "What is the value of Pi (π) rounded to two decimal places?", answer: "3.14", image: "./images/pi.jpg", correctImage: "./images/pi-correct.jpg" },
+    { question: "What is the square root of 81?", answer: "9", image: "./images/square_root.jpg", correctImage: "./images/square_root-correct.jpg" },
+    { question: "What is 5 multiplied by 6?", answer: "30", image: "./images/multiply.jpg", correctImage: "./images/multiply-correct.jpg" }
+];
+
+const physicsQuestions = [
+    { question: "What is the unit of measurement for force?", answer: "Newton", image: "./images/newton.jpg", correctImage: "./images/newton-correct.jpg" },
+    { question: "What is the acceleration due to gravity on Earth?", answer: "9.81 m/s^2", image: "./images/gravity.jpg", correctImage: "./images/gravity-correct.jpg" }
+];
+
+const mathaugQuestions = [
+    { question: "What is the quadratic formula?", answer: "x = (-b ± √(b² - 4ac)) / 2a", image: "./images/quadratic.jpg", correctImage: "./images/quadratic-correct.jpg" },
+    { question: "What is the slope-intercept form of a linear equation?", answer: "y = mx + b", image: "./images/slope_intercept.jpg", correctImage: "./images/slope_intercept-correct.jpg" }
+];
+
+const socialSciencesQuestions = [
+    { question: "Who is considered the father of modern sociology?", answer: "Émile Durkheim", image: "./images/durkheim.jpg", correctImage: "./images/durkheim-correct.jpg" },
+    { question: "What is the economic theory based on private ownership called?", answer: "Capitalism", image: "./images/capitalism.jpg", correctImage: "./images/capitalism-correct.jpg" }
 ];
 
 const questionElement = document.getElementById("question");
 const questionImageElement = document.getElementById("question-image");
+const correctImageElement = document.getElementById("correct-image");
 const answerForm = document.getElementById("answer-form");
 const answerInput = document.getElementById("answer");
 const feedback = document.getElementById("feedback");
 const subjectSelection = document.getElementById("subject-selection");
 const questionContainer = document.getElementById("question-container");
 const homeButton = document.getElementById("home-btn");
+const prevButton = document.getElementById("prev-btn");
+const nextButton = document.getElementById("next-btn");
+const giveUpButton = document.getElementById("give-up-btn");
+const websiteDescription = document.getElementById("website-description");
 
 let currentQuestions = [];
 let currentQuestionIndex = 0;
@@ -99,38 +164,65 @@ function displayQuestion() {
     const currentQuestion = currentQuestions[currentQuestionIndex];
     questionElement.textContent = currentQuestion.question;
     questionImageElement.src = currentQuestion.image;
+    correctImageElement.src = currentQuestion.correctImage;
+    correctImageElement.style.display = "none";
+    feedback.textContent = "";
+    giveUpButton.disabled = false;
 }
 
 function checkAnswer(userAnswer) {
     const correctAnswer = currentQuestions[currentQuestionIndex].answer;
     if (userAnswer.trim().toLowerCase() === correctAnswer.toLowerCase()) {
         feedback.textContent = "Correct!";
+        correctImageElement.style.display = "block";
+        giveUpButton.disabled = true;
     } else {
         feedback.textContent = "Incorrect. Try again.";
     }
 }
 
+giveUpButton.addEventListener("click", function() {
+    feedback.textContent = `The correct answer is: ${currentQuestions[currentQuestionIndex].answer}`;
+    correctImageElement.style.display = "block";
+    giveUpButton.disabled = true;
+});
+
 answerForm.addEventListener("submit", function(event) {
     event.preventDefault();
     const userAnswer = answerInput.value;
     checkAnswer(userAnswer);
-    answerInput.value = ""; // Clear input field
-    // Go to the next question after 1.5 seconds
-    setTimeout(nextQuestion, 1500);
+    answerInput.value = "";
 });
 
-function nextQuestion() {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < currentQuestions.length) {
+nextButton.addEventListener("click", function() {
+    if (currentQuestionIndex < currentQuestions.length - 1) {
+        currentQuestionIndex++;
         displayQuestion();
-        feedback.textContent = ""; // Clear feedback
-    } else {
-        alert("Congratulations! You've completed all questions.");
     }
-}
+});
+
+prevButton.addEventListener("click", function() {
+    if (currentQuestionIndex > 0) {
+        currentQuestionIndex--;
+        displayQuestion();
+    }
+});
 
 function selectSubject(subject) {
-    currentQuestions = subject === "chemistry" ? chemistryQuestions : biologyQuestions;
+    websiteDescription.style.display = "none";
+    if (subject === "chemistry") {
+        currentQuestions = chemistryQuestions;
+    } else if (subject === "biology") {
+        currentQuestions = biologyQuestions;
+    } else if (subject === "mathopt") {
+        currentQuestions = mathoptQuestions;
+    } else if (subject === "physics") {
+        currentQuestions = physicsQuestions;
+    } else if (subject === "mathaug") {
+        currentQuestions = mathaugQuestions;
+    } else if (subject === "social-sciences") {
+        currentQuestions = socialSciencesQuestions;
+    }
     currentQuestionIndex = 0;
     displayQuestion();
     subjectSelection.style.display = "none";
@@ -145,9 +237,28 @@ document.getElementById("biology-btn").addEventListener("click", function() {
     selectSubject("biology");
 });
 
+document.getElementById("mathopt-btn").addEventListener("click", function() {
+    selectSubject("mathopt");
+});
+
+document.getElementById("physics-btn").addEventListener("click", function() {
+    selectSubject("physics");
+});
+
+document.getElementById("mathaug-btn").addEventListener("click", function() {
+    selectSubject("mathaug");
+});
+
+document.getElementById("social-sciences-btn").addEventListener("click", function() {
+    selectSubject("social-sciences");
+});
+
 homeButton.addEventListener("click", function() {
     questionContainer.style.display = "none";
     subjectSelection.style.display = "block";
+    feedback.textContent = "";
+    questionImageElement.style.display = "block";
+    correctImageElement.style.display = "none";
 });
 
 </script>
