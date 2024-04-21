@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gatavojies Uzvarai: Eksāmenu Mācību Platforma</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        #question-container {
+            margin-top: 30px;
+        }
+
+        #feedback {
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ddd;
+        }
+
+        #question-image {
+            max-width: 700px;
+            margin: 20px auto;
+            display: block;
+        }
+
+        button#give-up-btn {
+            margin-left: 20px;
+        }
+
+        button#prev-btn,
+        button#give-up-btn,
+        button#next-btn {
+            margin: 10px;
+        }
+
+        .video-background {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 50px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            position: relative;
+            margin: 10% auto;
+            padding: 20px;
+            width: 25%;
+            text-align: center;
+            background-color: #fefefe;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            max-height: 70%;
+        }
+
+        .modal-image {
+            max-width: 100%;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        body.modal-open {
+            overflow: hidden;
+        }
+
+        .close-btn {
+            position: absolute;
+            right: 15px;
+            top: 5px;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body>
+    <video autoplay muted loop class="video-background">
+        <source src="./images/background.mp4" type="video/mp4">
+    </video>
+    <div class="container">
+        <h1>Gatavojies Uzvarai: Eksāmenu Mācību Platforma</h1>
+        <p id="website-description">Laipni lūdzu visus! Izvēlies no dažādiem priekšmetiem, pārbaudi savas zināšanas un gatavojies eksāmeniem. <i>Kristians :)</i></p>
+        <div id="subject-selection">
+            <button id="chemistry-btn">Ķīmija</button>
+            <button id="biology-btn">Bioloģija</button>
+            <button id="physics-btn">Fizika</button>
+            <button id="mathopt-btn">Matemātika (Optimālā)</button>
+            <button id="mathaug-btn">Matemātika (Augstākā)</button>
+            <button id="social-sciences-btn">Sociālās Zinātnes</button>
+        </div>
+        <div id="question-container" style="display: none;">
+            <button id="home-btn">Atpakaļ uz sākumlapu</button>
+            <h2 id="question">Question goes here</h2>
+            <img id="question-image" src="" alt="Jautājums">
+            <form id="answer-form">
+                <input type="text" id="answer" placeholder="Tava atbilde">
+                <button type="submit">Iesniegt</button>
+            </form>
+            <div style="margin-top: 20px;">
+                <button id="prev-btn">Iepriekšējais uzdevums</button>
+                <button id="give-up-btn">Padoties</button>
+                <button id="next-btn">Nākmais uzdevums</button>
+            </div>
+            <div id="feedback"></div>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <p><b>Tu esi sasniedzis uzdevumu beigas!</b></p>
+            <img src="./images/end.gif" alt="No more questions" class="modal-image">
+        </div>
+    </div>
+
+    <script>
+        const chemistryQuestions = [
+            { question: "Ķīmijas - 1. Jautājums", answer: "", image: "./images/chemistry/1.png" },
+            { question: "Ķīmijas - 2. Jautājums", answer: "", image: "./images/chemistry/2.png" },
+            { question: "Ķīmijas - 3. Jautājums", answer: "", image: "./images/chemistry/3.png" },
+            { question: "Ķīmijas - 4. Jautājums", answer: "", image: "./images/chemistry/4.png" },
+            { question: "Ķīmijas - 5. Jautājums", answer: "", image: "./images/chemistry/5.png" },
+            { question: "Ķīmijas - 6. Jautājums", answer: "", image: "./images/chemistry/6.png" },
+            { question: "Ķīmijas - 7. Jautājums", answer: "", image: "./images/chemistry/7.png" },
+            { question: "Ķīmijas - 8. Jautājums", answer: "", image: "./images/chemistry/8.png" },
+            { question: "Ķīmijas - 9. Jautājums", answer: "", image: "./images/chemistry/9.png" },
+            { question: "Ķīmijas - 10. Jautājums", answer: "", image: "./images/chemistry/10.png" },
+            { question: "Ķīmijas - 11. Jautājums", answer: "", image: "./images/chemistry/11.png" },
+            { question: "Ķīmijas - 12. Jautājums", answer: "", image: "./images/chemistry/12.png" },
+            { question: "Ķīmijas - 13. Jautājums", answer: "", image: "./images/chemistry/13.png" },
+            { question: "Ķīmijas - 14. Jautājums", answer: "", image: "./images/chemistry/14.png" },
+            { question: "Ķīmijas - 15. Jautājums", answer: "", image: "./images/chemistry/15.png" },
+            { question: "Ķīmijas - 16. Jautājums", answer: "", image: "./images/chemistry/16.png" },
+            { question: "Ķīmijas - 17. Jautājums", answer: "", image: "./images/chemistry/17.png" },
+            { question: "Ķīmijas - 18. Jautājums", answer: "", image: "./images/chemistry/18.png" },
+            { question: "Ķīmijas - 19. Jautājums", answer: "", image: "./images/chemistry/19.png" },
+            { question: "Ķīmijas - 20. Jautājums", answer: "", image: "./images/chemistry/20.png" },
+            { question: "Ķīmijas - 21. Jautājums", answer: "", image: "./images/chemistry/21.png" },
+            { question: "Ķīmijas - 22. Jautājums", answer: "", image: "./images/chemistry/22.png" },
+            { question: "Ķīmijas - 23. Jautājums", answer: "", image: "./images/chemistry/23.png" },
+            { question: "Ķīmijas - 24. Jautājums", answer: "", image: "./images/chemistry/24.png" },
+            { question: "Ķīmijas - 25. Jautājums", answer: "", image: "./images/chemistry/25.png" }
+        ];
+
+        const biologyQuestions = [
+            { question: "Bioloģija - 1. Jautājums", answer: "", image: "./images/biology/1.png" },
+            { question: "Bioloģija - 2. Jautājums", answer: "", image: "./images/biology/2.png" },
+            { question: "Bioloģija - 3. Jautājums", answer: "", image: "./images/biology/3.png" },
+            { question: "Bioloģija - 4. Jautājums", answer: "", image: "./images/biology/4.png" },
+            { question: "Bioloģija - 5. Jautājums", answer: "", image: "./images/biology/5.png" },
+            { question: "Bioloģija - 6. Jautājums", answer: "", image: "./images/biology/6.png" },
+            { question: "Bioloģija - 7. Jautājums", answer: "", image: "./images/biology/7.png" },
+            { question: "Bioloģija - 8. Jautājums", answer: "", image: "./images/biology/8.png" },
+            { question: "Bioloģija - 9. Jautājums", answer: "", image: "./images/biology/9.png" },
+            { question: "Bioloģija - 10. Jautājums", answer: "", image: "./images/biology/10.png" },
+            { question: "Bioloģija - 11. Jautājums", answer: "", image: "./images/biology/11.png" },
+            { question: "Bioloģija - 12. Jautājums", answer: "", image: "./images/biology/12.png" },
+            { question: "Bioloģija - 13. Jautājums", answer: "", image: "./images/biology/13.png" },
+            { question: "Bioloģija - 14. Jautājums", answer: "", image: "./images/biology/14.png" },
+            { question: "Bioloģija - 15. Jautājums", answer: "", image: "./images/biology/15.png" },
+            { question: "Bioloģija - 16. Jautājums", answer: "", image: "./images/biology/16.png" },
+            { question: "Bioloģija - 17. Jautājums", answer: "", image: "./images/biology/17.png" },
+            { question: "Bioloģija - 18. Jautājums", answer: "", image: "./images/biology/18.png" },
+            { question: "Bioloģija - 19. Jautājums", answer: "", image: "./images/biology/19.png" },
+            { question: "Bioloģija - 20. Jautājums", answer: "", image: "./images/biology/20.png" },
+            { question: "Bioloģija - 21. Jautājums", answer: "", image: "./images/biology/21.png" },
+            { question: "Bioloģija - 22. Jautājums", answer: "", image: "./images/biology/22.png" },
+            { question: "Bioloģija - 23. Jautājums", answer: "", image: "./images/biology/23.png" },
+            { question: "Bioloģija - 24. Jautājums", answer: "", image: "./images/biology/24.png" },
+            { question: "Bioloģija - 25. Jautājums", answer: "", image: "./images/biology/25.png" }
+        ];
+
+        const physicsQuestions = [
+            { question: "Fizikas - 1. Jautājums", answer: "A", image: "./images/physics/1.png" },
+            { question: "Fizikas - 2. Jautājums", answer: "B", image: "./images/physics/2.png" },
+            { question: "Fizikas - 3. Jautājums", answer: "B", image: "./images/physics/3.png" },
+            { question: "Fizikas - 4. Jautājums", answer: "C", image: "./images/physics/4.png" },
+            { question: "Fizikas - 5. Jautājums", answer: "C", image: "./images/physics/5.png" },
+            { question: "Fizikas - 6. Jautājums", answer: "D", image: "./images/physics/6.png" },
+            { question: "Fizikas - 7. Jautājums", answer: "A", image: "./images/physics/7.png" },
+            { question: "Fizikas - 8. Jautājums", answer: "B", image: "./images/physics/8.png" },
+            { question: "Fizikas - 9. Jautājums", answer: "B", image: "./images/physics/9.png" },
+            { question: "Fizikas - 10. Jautājums", answer: "B", image: "./images/physics/10.png" },
+            { question: "Fizikas - 11. Jautājums", answer: "A", image: "./images/physics/11.png" },
+            { question: "Fizikas - 12. Jautājums", answer: "B", image: "./images/physics/12.png" },
+            { question: "Fizikas - 13. Jautājums", answer: "C", image: "./images/physics/13.png" },
+            { question: "Fizikas - 14. Jautājums", answer: "C", image: "./images/physics/14.png" },
+            { question: "Fizikas - 15. Jautājums", answer: "C", image: "./images/physics/15.png" },
+            { question: "Fizikas - 16. Jautājums", answer: "D", image: "./images/physics/16.png" },
+            { question: "Fizikas - 17. Jautājums", answer: "C", image: "./images/physics/17.png" },
+            { question: "Fizikas - 18. Jautājums", answer: "D", image: "./images/physics/18.png" },
+            { question: "Fizikas - 19. Jautājums", answer: "C", image: "./images/physics/19.png" },
+            { question: "Fizikas - 20. Jautājums", answer: "A", image: "./images/physics/20.png" },
+            { question: "Fizikas - 21. Jautājums", answer: "BE", image: "./images/physics/21.png" },
+            { question: "Fizikas - 22. Jautājums", answer: "AC", image: "./images/physics/22.png" },
+            { question: "Fizikas - 23. Jautājums", answer: "AC", image: "./images/physics/23.png" },
+            { question: "Fizikas - 24. Jautājums", answer: "BDE", image: "./images/physics/24.png" },
+            { question: "Fizikas - 25. Jautājums", answer: "ABE", image: "./images/physics/25.png" }
+        ];
+
+        const mathoptQuestions = [
+            { question: "Matemātika - 1. Jautājums", answer: "", image: "./images/mathopt/1.png" },
+            { question: "Matemātika - 2. Jautājums", answer: "", image: "./images/mathopt/2.png" },
+            { question: "Matemātika - 3. Jautājums", answer: "", image: "./images/mathopt/3.png" },
+            { question: "Matemātika - 4. Jautājums", answer: "", image: "./images/mathopt/4.png" },
+            { question: "Matemātika - 5. Jautājums", answer: "", image: "./images/mathopt/5.png" },
+            { question: "Matemātika - 6. Jautājums", answer: "", image: "./images/mathopt/6.png" },
+            { question: "Matemātika - 7. Jautājums", answer: "", image: "./images/mathopt/7.png" },
+            { question: "Matemātika - 8. Jautājums", answer: "", image: "./images/mathopt/8.png" },
+            { question: "Matemātika - 9. Jautājums", answer: "", image: "./images/mathopt/9.png" },
+            { question: "Matemātika - 10. Jautājums", answer: "", image: "./images/mathopt/10.png" },
+            { question: "Matemātika - 11. Jautājums", answer: "", image: "./images/mathopt/11.png" },
+            { question: "Matemātika - 12. Jautājums", answer: "", image: "./images/mathopt/12.png" },
+            { question: "Matemātika - 13. Jautājums", answer: "", image: "./images/mathopt/13.png" },
+            { question: "Matemātika - 14. Jautājums", answer: "", image: "./images/mathopt/14.png" },
+            { question: "Matemātika - 15. Jautājums", answer: "", image: "./images/mathopt/15.png" },
+            { question: "Matemātika - 16. Jautājums", answer: "", image: "./images/mathopt/16.png" },
+            { question: "Matemātika - 17. Jautājums", answer: "", image: "./images/mathopt/17.png" },
+            { question: "Matemātika - 18. Jautājums", answer: "", image: "./images/mathopt/18.png" },
+            { question: "Matemātika - 19. Jautājums", answer: "", image: "./images/mathopt/19.png" },
+            { question: "Matemātika - 20. Jautājums", answer: "", image: "./images/mathopt/20.png" },
+            { question: "Matemātika - 21. Jautājums", answer: "", image: "./images/mathopt/21.png" },
+            { question: "Matemātika - 22. Jautājums", answer: "", image: "./images/mathopt/22.png" },
+            { question: "Matemātika - 23. Jautājums", answer: "", image: "./images/mathopt/23.png" },
+            { question: "Matemātika - 24. Jautājums", answer: "", image: "./images/mathopt/24.png" },
+            { question: "Matemātika - 25. Jautājums", answer: "", image: "./images/mathopt/25.png" }
+        ];
+
+        const mathaugQuestions = [
+            { question: "Matemātika - 1. Jautājums", answer: "", image: "./images/mathaug/1.png" },
+            { question: "Matemātika - 2. Jautājums", answer: "", image: "./images/mathaug/2.png" },
+            { question: "Matemātika - 3. Jautājums", answer: "", image: "./images/mathaug/3.png" },
+            { question: "Matemātika - 4. Jautājums", answer: "", image: "./images/mathaug/4.png" },
+            { question: "Matemātika - 5. Jautājums", answer: "", image: "./images/mathaug/5.png" },
+            { question: "Matemātika - 6. Jautājums", answer: "", image: "./images/mathaug/6.png" },
+            { question: "Matemātika - 7. Jautājums", answer: "", image: "./images/mathaug/7.png" },
+            { question: "Matemātika - 8. Jautājums", answer: "", image: "./images/mathaug/8.png" },
+            { question: "Matemātika - 9. Jautājums", answer: "", image: "./images/mathaug/9.png" },
+            { question: "Matemātika - 10. Jautājums", answer: "", image: "./images/mathaug/10.png" },
+            { question: "Matemātika - 11. Jautājums", answer: "", image: "./images/mathaug/11.png" },
+            { question: "Matemātika - 12. Jautājums", answer: "", image: "./images/mathaug/12.png" },
+            { question: "Matemātika - 13. Jautājums", answer: "", image: "./images/mathaug/13.png" },
+            { question: "Matemātika - 14. Jautājums", answer: "", image: "./images/mathaug/14.png" },
+            { question: "Matemātika - 15. Jautājums", answer: "", image: "./images/mathaug/15.png" },
+            { question: "Matemātika - 16. Jautājums", answer: "", image: "./images/mathaug/16.png" },
+            { question: "Matemātika - 17. Jautājums", answer: "", image: "./images/mathaug/17.png" },
+            { question: "Matemātika - 18. Jautājums", answer: "", image: "./images/mathaug/18.png" },
+            { question: "Matemātika - 19. Jautājums", answer: "", image: "./images/mathaug/19.png" },
+            { question: "Matemātika - 20. Jautājums", answer: "", image: "./images/mathaug/20.png" },
+            { question: "Matemātika - 21. Jautājums", answer: "", image: "./images/mathaug/21.png" },
+            { question: "Matemātika - 22. Jautājums", answer: "", image: "./images/mathaug/22.png" },
+            { question: "Matemātika - 23. Jautājums", answer: "", image: "./images/mathaug/23.png" },
+            { question: "Matemātika - 24. Jautājums", answer: "", image: "./images/mathaug/24.png" },
+            { question: "Matemātika - 25. Jautājums", answer: "", image: "./images/mathaug/25.png" }
+        ];
+
+        const socialSciencesQuestions = [
+            { question: "Sociālās Zinātnes - 1. Jautājums", answer: "", image: "./images/social/1.png" },
+            { question: "Sociālās Zinātnes - 2. Jautājums", answer: "", image: "./images/social/2.png" },
+            { question: "Sociālās Zinātnes - 3. Jautājums", answer: "", image: "./images/social/3.png" },
+            { question: "Sociālās Zinātnes - 4. Jautājums", answer: "", image: "./images/social/4.png" },
+            { question: "Sociālās Zinātnes - 5. Jautājums", answer: "", image: "./images/social/5.png" },
+            { question: "Sociālās Zinātnes - 6. Jautājums", answer: "", image: "./images/social/6.png" },
+            { question: "Sociālās Zinātnes - 7. Jautājums", answer: "", image: "./images/social/7.png" },
+            { question: "Sociālās Zinātnes - 8. Jautājums", answer: "", image: "./images/social/8.png" },
+            { question: "Sociālās Zinātnes - 9. Jautājums", answer: "", image: "./images/social/9.png" },
+            { question: "Sociālās Zinātnes - 10. Jautājums", answer: "", image: "./images/social/10.png" },
+            { question: "Sociālās Zinātnes - 11. Jautājums", answer: "", image: "./images/social/11.png" },
+            { question: "Sociālās Zinātnes - 12. Jautājums", answer: "", image: "./images/social/12.png" },
+            { question: "Sociālās Zinātnes - 13. Jautājums", answer: "", image: "./images/social/13.png" },
+            { question: "Sociālās Zinātnes - 14. Jautājums", answer: "", image: "./images/social/14.png" },
+            { question: "Sociālās Zinātnes - 15. Jautājums", answer: "", image: "./images/social/15.png" },
+            { question: "Sociālās Zinātnes - 16. Jautājums", answer: "", image: "./images/social/16.png" },
+            { question: "Sociālās Zinātnes - 17. Jautājums", answer: "", image: "./images/social/17.png" },
+            { question: "Sociālās Zinātnes - 18. Jautājums", answer: "", image: "./images/social/18.png" },
+            { question: "Sociālās Zinātnes - 19. Jautājums", answer: "", image: "./images/social/19.png" },
+            { question: "Sociālās Zinātnes - 20. Jautājums", answer: "", image: "./images/social/20.png" },
+            { question: "Sociālās Zinātnes - 21. Jautājums", answer: "", image: "./images/social/21.png" },
+            { question: "Sociālās Zinātnes - 22. Jautājums", answer: "", image: "./images/social/22.png" },
+            { question: "Sociālās Zinātnes - 23. Jautājums", answer: "", image: "./images/social/23.png" },
+            { question: "Sociālās Zinātnes - 24. Jautājums", answer: "", image: "./images/social/24.png" },
+            { question: "Sociālās Zinātnes - 25. Jautājums", answer: "", image: "./images/social/25.png" }
+        ];
+
+        const questionElement = document.getElementById("question");
+        const questionImageElement = document.getElementById("question-image");
+        const answerForm = document.getElementById("answer-form");
+        const answerInput = document.getElementById("answer");
+        const feedback = document.getElementById("feedback");
+        const subjectSelection = document.getElementById("subject-selection");
+        const questionContainer = document.getElementById("question-container");
+        const homeButton = document.getElementById("home-btn");
+        const prevButton = document.getElementById("prev-btn");
+        const nextButton = document.getElementById("next-btn");
+        const giveUpButton = document.getElementById("give-up-btn");
+        const websiteDescription = document.getElementById("website-description");
+
+        let currentQuestions = [];
+        let currentQuestionIndex = 0;
+
+        function displayQuestion() {
+            const currentQuestion = currentQuestions[currentQuestionIndex];
+            questionElement.textContent = currentQuestion.question;
+            questionImageElement.src = currentQuestion.image;
+            feedback.textContent = "";
+            giveUpButton.disabled = false;
+        }
+
+        function checkAnswer(userAnswer) {
+            const correctAnswer = currentQuestions[currentQuestionIndex].answer;
+            if (userAnswer.trim().toLowerCase() === correctAnswer.toLowerCase()) {
+                feedback.textContent = "Pareizi!";
+                giveUpButton.disabled = true;
+            } else {
+                feedback.textContent = "Nepareizi. Mēģini vēlreiz.";
+            }
+        }
+
+        giveUpButton.addEventListener("click", function() {
+            feedback.textContent = `Pareizā atbilde ir: ${currentQuestions[currentQuestionIndex].answer}`;
+            giveUpButton.disabled = true;
+        });
+
+        answerForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            const userAnswer = answerInput.value;
+            checkAnswer(userAnswer);
+            answerInput.value = "";
+        });
+
+        nextButton.addEventListener("click", function() {
+            if (currentQuestionIndex < currentQuestions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            } else {
+                showModal();
+            }
+        });
+
+        prevButton.addEventListener("click", function() {
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            } else {
+                showModal();
+            }
+        });
+
+        function showModal() {
+            const modal = document.getElementById("myModal");
+            const closeModalBtn = document.getElementsByClassName("close-btn")[0];
+
+            modal.style.display = "block";
+
+            closeModalBtn.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        }
+
+        function selectSubject(subject) {
+            websiteDescription.style.display = "none";
+            if (subject === "chemistry") {
+                currentQuestions = chemistryQuestions;
+            } else if (subject === "biology") {
+                currentQuestions = biologyQuestions;
+            } else if (subject === "physics") {
+                currentQuestions = physicsQuestions;
+            } else if (subject === "mathopt") {
+                currentQuestions = mathoptQuestions;
+            } else if (subject === "mathaug") {
+                currentQuestions = mathaugQuestions;
+            } else if (subject === "social-sciences") {
+                currentQuestions = socialSciencesQuestions;
+            }
+            currentQuestionIndex = 0;
+            displayQuestion();
+            subjectSelection.style.display = "none";
+            questionContainer.style.display = "block";
+        }
+
+        document.getElementById("chemistry-btn").addEventListener("click", function() {
+            selectSubject("chemistry");
+        });
+
+        document.getElementById("biology-btn").addEventListener("click", function() {
+            selectSubject("biology");
+        });
+
+        document.getElementById("physics-btn").addEventListener("click", function() {
+            selectSubject("physics");
+        });
+
+        document.getElementById("mathopt-btn").addEventListener("click", function() {
+            selectSubject("mathopt");
+        });
+
+        document.getElementById("mathaug-btn").addEventListener("click", function() {
+            selectSubject("mathaug");
+        });
+
+        document.getElementById("social-sciences-btn").addEventListener("click", function() {
+            selectSubject("social-sciences");
+        });
+
+        homeButton.addEventListener("click", function() {
+            questionContainer.style.display = "none";
+            subjectSelection.style.display = "block";
+            feedback.textContent = "";
+        });
+
+    </script>
+</body>
+</html>
