@@ -131,7 +131,7 @@
     </video>
     <div class="container">
         <h1>Gatavojies Uzvarai: Eksāmenu Mācību Platforma</h1>
-        <p id="website-description">Laipni lūdzam Gatavojies Uzvarai, eksāmenu mācību platformā! Izvēlies no dažādām tēmām un pārbaudi savas zināšanas.</p>
+        <p id="website-description">Laipni lūdzu visus! Izvēlies no dažādiem priekšmetiem, pārbaudi savas zināšanas un gatavojies eksāmeniem. <i>Kristians :)</i></p>
         <div id="subject-selection">
             <button id="chemistry-btn">Ķīmija</button>
             <button id="biology-btn">Bioloģija</button>
@@ -141,27 +141,26 @@
             <button id="social-sciences-btn">Sociālās Zinātnes</button>
         </div>
         <div id="question-container" style="display: none;">
-            <button id="home-btn">Back to Home</button>
+            <button id="home-btn">Atpakaļ uz sākumlapu</button>
             <h2 id="question">Question goes here</h2>
-            <img id="question-image" src="" alt="Question Image">
+            <img id="question-image" src="" alt="Jautājums">
             <form id="answer-form">
-                <input type="text" id="answer" placeholder="Your answer">
-                <button type="submit">Submit</button>
+                <input type="text" id="answer" placeholder="Tava atbilde">
+                <button type="submit">Iesniegt</button>
             </form>
             <div style="margin-top: 20px;">
-                <button id="prev-btn">Previous</button>
-                <button id="give-up-btn">Give Up</button>
-                <button id="next-btn">Next</button>
+                <button id="prev-btn">Iepriekšējais uzdevums</button>
+                <button id="give-up-btn">Padoties</button>
+                <button id="next-btn">Nākmais uzdevums</button>
             </div>
             <div id="feedback"></div>
         </div>
     </div>
 
-    <!-- Modal -->
     <div id="myModal" class="modal">
         <div class="modal-content">
             <span class="close-btn">&times;</span>
-            <p>No more questions left!</p>
+            <p><b>Tu esi sasniedzis uzdevumu beigas!</b></p>
             <img src="./images/end.gif" alt="No more questions" class="modal-image">
         </div>
     </div>
@@ -225,15 +224,15 @@
         function checkAnswer(userAnswer) {
             const correctAnswer = currentQuestions[currentQuestionIndex].answer;
             if (userAnswer.trim().toLowerCase() === correctAnswer.toLowerCase()) {
-                feedback.textContent = "Correct!";
+                feedback.textContent = "Pareizi!";
                 giveUpButton.disabled = true;
             } else {
-                feedback.textContent = "Incorrect. Try again.";
+                feedback.textContent = "Nepareizi. Mēģini vēlreiz.";
             }
         }
 
         giveUpButton.addEventListener("click", function() {
-            feedback.textContent = `The correct answer is: ${currentQuestions[currentQuestionIndex].answer}`;
+            feedback.textContent = `Pareizā atbilde ir: ${currentQuestions[currentQuestionIndex].answer}`;
             giveUpButton.disabled = true;
         });
 
@@ -249,7 +248,6 @@
                 currentQuestionIndex++;
                 displayQuestion();
             } else {
-                // Display modal when there are no more questions
                 showModal();
             }
         });
@@ -259,19 +257,16 @@
                 currentQuestionIndex--;
                 displayQuestion();
             } else {
-                // Display modal when there are no previous questions
                 showModal();
             }
         });
 
-        // Function to display the modal
         function showModal() {
             const modal = document.getElementById("myModal");
             const closeModalBtn = document.getElementsByClassName("close-btn")[0];
 
             modal.style.display = "block";
 
-            // Close the modal when the close button or outside the modal is clicked
             closeModalBtn.onclick = function() {
                 modal.style.display = "none";
             }
