@@ -149,7 +149,7 @@
         <source src="./images/fons.mp4" type="video/mp4">
     </video>
     <div class="container">
-        <h1>Gatavojies Uzvarai: Eksāmenu Mācību Platforma</h1>
+        <h1>Eksāmenu Mācību Platforma</h1>
         <p id="website-description">Laipni lūdzu visus! Izvēlies no dažādiem priekšmetiem, pārbaudi savas zināšanas un gatavojies eksāmeniem. <i>Kristians :)</i></p>
         <div id="subject-selection">
             <button id="chemistry-btn">Ķīmija</button>
@@ -165,7 +165,6 @@
             <button class="year-btn" data-subject="chemistry" data-year="2">2023</button>
             <button class="year-btn" data-subject="chemistry" data-year="3">2022</button>
             <button class="year-btn" data-subject="chemistry" data-year="4">2021</button>
-            <button class="year-btn" data-subject="chemistry" data-year="5">2020</button>
             <button class="year-btn" data-subject="biology" data-year="6">Skola2030</button>
             <button class="year-btn" data-subject="biology" data-year="7">2023</button>
             <button class="year-btn" data-subject="biology" data-year="8">2022</button>
@@ -173,24 +172,13 @@
             <button class="year-btn" data-subject="biology" data-year="10">2020</button>
             <button class="year-btn" data-subject="physics" data-year="11">Skola2030</button>
             <button class="year-btn" data-subject="physics" data-year="12">2023</button>
-            <button class="year-btn" data-subject="physics" data-year="13">2022</button>
-            <button class="year-btn" data-subject="physics" data-year="14">2021</button>
-            <button class="year-btn" data-subject="physics" data-year="15">2020</button>
             <button class="year-btn" data-subject="mathopt" data-year="16">Skola2030</button>
             <button class="year-btn" data-subject="mathopt" data-year="17">2023</button>
             <button class="year-btn" data-subject="mathopt" data-year="18">2022</button>
-            <button class="year-btn" data-subject="mathopt" data-year="19">2021</button>
-            <button class="year-btn" data-subject="mathopt" data-year="20">2020</button>
             <button class="year-btn" data-subject="mathaug" data-year="21">Skola2030</button>
             <button class="year-btn" data-subject="mathaug" data-year="22">2023</button>
-            <button class="year-btn" data-subject="mathaug" data-year="23">2022</button>
-            <button class="year-btn" data-subject="mathaug" data-year="24">2021</button>
-            <button class="year-btn" data-subject="mathaug" data-year="25">2020</button>
             <button class="year-btn" data-subject="social-sciences" data-year="26">Skola2030</button>
             <button class="year-btn" data-subject="social-sciences" data-year="27">2023</button>
-            <button class="year-btn" data-subject="social-sciences" data-year="28">2022</button>
-            <button class="year-btn" data-subject="social-sciences" data-year="29">2021</button>
-            <button class="year-btn" data-subject="social-sciences" data-year="30">2020</button>
         </div>
         <div id="question-container" style="display: none;">
             <button id="home-btn">Atpakaļ uz sākumlapu</button>
@@ -213,121 +201,118 @@
         <div class="modal-content">
             <span class="close-btn">&times;</span>
             <p><b>Tu esi sasniedzis uzdevumu beigas!</b></p>
-            <img src="./images/end.gif" alt="No more questions" class="modal-image">
+            <img src="./images/end.gif" alt="Uzdevumu beigas!" class="modal-image">
         </div>
     </div>
 
     <script>
         const chemistryQuestions = [
-            { question: "Ķīmija - 1.", answer: "B", image: "./images/chemistry/1.png", year: "1" },
-            { question: "Ķīmija - 2.", answer: "C", image: "./images/chemistry/2.png", year: "1" },
-            { question: "Ķīmija - 3.", answer: "D", image: "./images/chemistry/3.png", year: "1" },
-            { question: "Ķīmija - 4.", answer: "B", image: "./images/chemistry/4.png", year: "1" },
-            { question: "Ķīmija - 5.", answer: "C", image: "./images/chemistry/5.png", year: "1" },
-            { question: "Ķīmija - 6.", answer: "D", image: "./images/chemistry/6.png", year: "1" },
-            { question: "Ķīmija - 7.", answer: "A", image: "./images/chemistry/7.png", year: "1" },
-            { question: "Ķīmija - 8.", answer: "A", image: "./images/chemistry/8.png", year: "1" },
-            { question: "Ķīmija - 9.", answer: "C", image: "./images/chemistry/9.png", year: "1" },
-            { question: "Ķīmija - 10.", answer: "B", image: "./images/chemistry/10.png", year: "1" },
-            { question: "Ķīmija - 11.", answer: "C", image: "./images/chemistry/11.png", year: "1" },
-            { question: "Ķīmija - 12.", answer: "B", image: "./images/chemistry/12.png", year: "1" },
-            { question: "Ķīmija - 13.", answer: "D", image: "./images/chemistry/13.png", year: "1" },
-            { question: "Ķīmija - 14.", answer: "C", image: "./images/chemistry/14.png", year: "1" },
-            { question: "Ķīmija - 15.", answer: "D", image: "./images/chemistry/15.png", year: "1" },
-            { question: "Ķīmija - 16.", answer: "B", image: "./images/chemistry/16.png", year: "1" },
-            { question: "Ķīmija - 17.", answer: "B", image: "./images/chemistry/17.png", year: "1" },
-            { question: "Ķīmija - 18.", answer: "C", image: "./images/chemistry/18.png", year: "1" },
-            { question: "Ķīmija - 19.", answer: "C", image: "./images/chemistry/19.png", year: "1" },
-            { question: "Ķīmija - 20.", answer: "A", image: "./images/chemistry/20.png", year: "1" },
-            { question: "Ķīmija - 21.(Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "BC", image: "./images/chemistry/21.png", year: "1" },
-            { question: "Ķīmija - 22.(Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "AD", image: "./images/chemistry/22.png", year: "1" },
-            { question: "Ķīmija - 23.(Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "ACD", image: "./images/chemistry/23.png", year: "1" },
-            { question: "Ķīmija - 24.(Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "ABC", image: "./images/chemistry/24.png", year: "1" },
-            { question: "Ķīmija - 25.(Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "BD", image: "./images/chemistry/25.png", year: "1" }
+            { question: "Ķīmija(Skola2030) - 1. Uzdevums", answer: "B", image: "./images/chemistry/1.png", year: "1" },
+            { question: "Ķīmija - 2. Uzdevums", answer: "C", image: "./images/chemistry/2.png", year: "1" },
+            { question: "Ķīmija - 3. Uzdevums", answer: "D", image: "./images/chemistry/3.png", year: "1" },
+            { question: "Ķīmija - 4. Uzdevums", answer: "B", image: "./images/chemistry/4.png", year: "1" },
+            { question: "Ķīmija - 5. Uzdevums", answer: "C", image: "./images/chemistry/5.png", year: "1" },
+            { question: "Ķīmija - 6. Uzdevums", answer: "D", image: "./images/chemistry/6.png", year: "1" },
+            { question: "Ķīmija - 7. Uzdevums", answer: "A", image: "./images/chemistry/7.png", year: "1" },
+            { question: "Ķīmija - 8. Uzdevums", answer: "A", image: "./images/chemistry/8.png", year: "1" },
+            { question: "Ķīmija - 9. Uzdevums", answer: "C", image: "./images/chemistry/9.png", year: "1" },
+            { question: "Ķīmija - 10. Uzdevums", answer: "B", image: "./images/chemistry/10.png", year: "1" },
+            { question: "Ķīmija - 11. Uzdevums", answer: "C", image: "./images/chemistry/11.png", year: "1" },
+            { question: "Ķīmija - 12. Uzdevums", answer: "B", image: "./images/chemistry/12.png", year: "1" },
+            { question: "Ķīmija - 13. Uzdevums", answer: "D", image: "./images/chemistry/13.png", year: "1" },
+            { question: "Ķīmija - 14. Uzdevums", answer: "C", image: "./images/chemistry/14.png", year: "1" },
+            { question: "Ķīmija - 15. Uzdevums", answer: "D", image: "./images/chemistry/15.png", year: "1" },
+            { question: "Ķīmija - 16. Uzdevums", answer: "B", image: "./images/chemistry/16.png", year: "1" },
+            { question: "Ķīmija - 17. Uzdevums", answer: "B", image: "./images/chemistry/17.png", year: "1" },
+            { question: "Ķīmija - 18. Uzdevums", answer: "C", image: "./images/chemistry/18.png", year: "1" },
+            { question: "Ķīmija - 19. Uzdevums", answer: "C", image: "./images/chemistry/19.png", year: "1" },
+            { question: "Ķīmija - 20. Uzdevums", answer: "A", image: "./images/chemistry/20.png", year: "1" },
+            { question: "Ķīmija - 21. Uzdevums (Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "BC", image: "./images/chemistry/21.png", year: "1" },
+            { question: "Ķīmija - 22. Uzdevums (Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "AD", image: "./images/chemistry/22.png", year: "1" },
+            { question: "Ķīmija - 23. Uzdevums (Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "ACD", image: "./images/chemistry/23.png", year: "1" },
+            { question: "Ķīmija - 24. Uzdevums (Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "ABC", image: "./images/chemistry/24.png", year: "1" },
+            { question: "Ķīmija - 25. Uzdevums (Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "BD", image: "./images/chemistry/25.png", year: "1" }
         ];
 
         const biologyQuestions = [
-            { question: "Bioloģija - 1.", answer: "", image: "./images/biology/1.png", year: "6" },
-            { question: "Bioloģija - 2.", answer: "", image: "./images/biology/2.png", year: "6" },
-            { question: "Bioloģija - 3.", answer: "", image: "./images/biology/3.png", year: "6" },
-            { question: "Bioloģija - 4.", answer: "", image: "./images/biology/4.png", year: "6" },
-            { question: "Bioloģija - 5.", answer: "", image: "./images/biology/5.png", year: "6" },
-            { question: "Bioloģija - 6.", answer: "", image: "./images/biology/6.png", year: "6" },
-            { question: "Bioloģija - 7.", answer: "", image: "./images/biology/7.png", year: "6" },
-            { question: "Bioloģija - 8.", answer: "", image: "./images/biology/8.png", year: "6" },
-            { question: "Bioloģija - 9.", answer: "", image: "./images/biology/9.png", year: "6" },
-            { question: "Bioloģija - 10.", answer: "", image: "./images/biology/10.png", year: "6" },
-            { question: "Bioloģija - 11.", answer: "", image: "./images/biology/11.png", year: "6" },
-            { question: "Bioloģija - 12.", answer: "", image: "./images/biology/12.png", year: "6" },
-            { question: "Bioloģija - 13.", answer: "", image: "./images/biology/13.png", year: "6" },
-            { question: "Bioloģija - 14.", answer: "", image: "./images/biology/14.png", year: "6" },
-            { question: "Bioloģija - 15.", answer: "", image: "./images/biology/15.png", year: "6" },
-            { question: "Bioloģija - 16.", answer: "", image: "./images/biology/16.png", year: "6" },
-            { question: "Bioloģija - 17.", answer: "", image: "./images/biology/17.png", year: "6" },
-            { question: "Bioloģija - 18.", answer: "", image: "./images/biology/18.png", year: "6" },
-            { question: "Bioloģija - 19.", answer: "", image: "./images/biology/19.png", year: "6" },
-            { question: "Bioloģija - 20.", answer: "", image: "./images/biology/20.png", year: "6" },
-            { question: "Bioloģija - 21.(Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "", image: "./images/biology/21.png", year: "6" },
-            { question: "Bioloģija - 22.(Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "", image: "./images/biology/22.png", year: "6" },
-            { question: "Bioloģija - 23.(Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "", image: "./images/biology/23.png", year: "6" },
-            { question: "Bioloģija - 24.(Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "", image: "./images/biology/24.png", year: "6" },
-            { question: "Bioloģija - 25.(Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "", image: "./images/biology/25.png", year: "6" }
+            { question: "Bioloģija - 1. Uzdevums", answer: "", image: "./images/biology/1.png", year: "6" },
+            { question: "Bioloģija - 2. Uzdevums", answer: "", image: "./images/biology/2.png", year: "6" },
+            { question: "Bioloģija - 3. Uzdevums", answer: "", image: "./images/biology/3.png", year: "6" },
+            { question: "Bioloģija - 4. Uzdevums", answer: "", image: "./images/biology/4.png", year: "6" },
+            { question: "Bioloģija - 5. Uzdevums", answer: "", image: "./images/biology/5.png", year: "6" },
+            { question: "Bioloģija - 6. Uzdevums", answer: "", image: "./images/biology/6.png", year: "6" },
+            { question: "Bioloģija - 7. Uzdevums", answer: "", image: "./images/biology/7.png", year: "6" },
+            { question: "Bioloģija - 8. Uzdevums", answer: "", image: "./images/biology/8.png", year: "6" },
+            { question: "Bioloģija - 9. Uzdevums", answer: "", image: "./images/biology/9.png", year: "6" },
+            { question: "Bioloģija - 10. Uzdevums", answer: "", image: "./images/biology/10.png", year: "6" },
+            { question: "Bioloģija - 11. Uzdevums", answer: "", image: "./images/biology/11.png", year: "6" },
+            { question: "Bioloģija - 12. Uzdevums", answer: "", image: "./images/biology/12.png", year: "6" },
+            { question: "Bioloģija - 13. Uzdevums", answer: "", image: "./images/biology/13.png", year: "6" },
+            { question: "Bioloģija - 14. Uzdevums", answer: "", image: "./images/biology/14.png", year: "6" },
+            { question: "Bioloģija - 15. Uzdevums", answer: "", image: "./images/biology/15.png", year: "6" },
+            { question: "Bioloģija - 16. Uzdevums", answer: "", image: "./images/biology/16.png", year: "6" },
+            { question: "Bioloģija - 17. Uzdevums", answer: "", image: "./images/biology/17.png", year: "6" },
+            { question: "Bioloģija - 18. Uzdevums", answer: "", image: "./images/biology/18.png", year: "6" },
+            { question: "Bioloģija - 19. Uzdevums", answer: "", image: "./images/biology/19.png", year: "6" },
+            { question: "Bioloģija - 20. Uzdevums", answer: "", image: "./images/biology/20.png", year: "6" },
+            { question: "Bioloģija - 21. Uzdevums (Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "", image: "./images/biology/21.png", year: "6" },
+            { question: "Bioloģija - 22. Uzdevums (Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "", image: "./images/biology/22.png", year: "6" },
+            { question: "Bioloģija - 23. Uzdevums (Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "", image: "./images/biology/23.png", year: "6" },
+            { question: "Bioloģija - 24. Uzdevums (Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "", image: "./images/biology/24.png", year: "6" },
+            { question: "Bioloģija - 25. Uzdevums (Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "", image: "./images/biology/25.png", year: "6" }
         ];
 
         const physicsQuestions = [
-            { question: "Fizika - 1.", answer: "A", image: "./images/physics/1.png", year: "11" },
-            { question: "Fizika - 2.", answer: "B", image: "./images/physics/2.png", year: "11" },
-            { question: "Fizika - 3.", answer: "B", image: "./images/physics/3.png", year: "11" },
-            { question: "Fizika - 4.", answer: "C", image: "./images/physics/4.png", year: "11" },
-            { question: "Fizika - 5.", answer: "C", image: "./images/physics/5.png", year: "11" },
-            { question: "Fizika - 6.", answer: "D", image: "./images/physics/6.png", year: "11" },
-            { question: "Fizika - 7.", answer: "A", image: "./images/physics/7.png", year: "11" },
-            { question: "Fizika - 8.", answer: "B", image: "./images/physics/8.png", year: "11" },
-            { question: "Fizika - 9.", answer: "B", image: "./images/physics/9.png", year: "11" },
-            { question: "Fizika - 10.", answer: "B", image: "./images/physics/10.png", year: "11" },
-            { question: "Fizika - 11.", answer: "A", image: "./images/physics/11.png", year: "11" },
-            { question: "Fizika - 12.", answer: "B", image: "./images/physics/12.png", year: "11" },
-            { question: "Fizika - 13.", answer: "C", image: "./images/physics/13.png", year: "11" },
-            { question: "Fizika - 14.", answer: "C", image: "./images/physics/14.png", year: "11" },
-            { question: "Fizika - 15.", answer: "C", image: "./images/physics/15.png", year: "11" },
-            { question: "Fizika - 16.", answer: "D", image: "./images/physics/16.png", year: "11" },
-            { question: "Fizika - 17.", answer: "C", image: "./images/physics/17.png", year: "11" },
-            { question: "Fizika - 18.", answer: "D", image: "./images/physics/18.png", year: "11" },
-            { question: "Fizika - 19.", answer: "C", image: "./images/physics/19.png", year: "11" },
-            { question: "Fizika - 20.", answer: "A", image: "./images/physics/20.png", year: "11" },
-            { question: "Fizika - 21.(Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "BE", image: "./images/physics/21.png", year: "11" },
-            { question: "Fizika - 22.(Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "AC", image: "./images/physics/22.png", year: "11" },
-            { question: "Fizika - 23.(Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "AC", image: "./images/physics/23.png", year: "11" },
-            { question: "Fizika - 24.(Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "BDE", image: "./images/physics/24.png", year: "11" },
-            { question: "Fizika - 25.(Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "ABE", image: "./images/physics/25.png", year: "11" }
+            { question: "Fizika - 1. Uzdevums", answer: "A", image: "./images/physics/1.png", year: "11" },
+            { question: "Fizika - 2. Uzdevums", answer: "B", image: "./images/physics/2.png", year: "11" },
+            { question: "Fizika - 3. Uzdevums", answer: "B", image: "./images/physics/3.png", year: "11" },
+            { question: "Fizika - 4. Uzdevums", answer: "C", image: "./images/physics/4.png", year: "11" },
+            { question: "Fizika - 5. Uzdevums", answer: "C", image: "./images/physics/5.png", year: "11" },
+            { question: "Fizika - 6. Uzdevums", answer: "D", image: "./images/physics/6.png", year: "11" },
+            { question: "Fizika - 7. Uzdevums", answer: "A", image: "./images/physics/7.png", year: "11" },
+            { question: "Fizika - 8. Uzdevums", answer: "B", image: "./images/physics/8.png", year: "11" },
+            { question: "Fizika - 9. Uzdevums", answer: "B", image: "./images/physics/9.png", year: "11" },
+            { question: "Fizika - 10. Uzdevums", answer: "B", image: "./images/physics/10.png", year: "11" },
+            { question: "Fizika - 11. Uzdevums", answer: "A", image: "./images/physics/11.png", year: "11" },
+            { question: "Fizika - 12. Uzdevums", answer: "B", image: "./images/physics/12.png", year: "11" },
+            { question: "Fizika - 13. Uzdevums", answer: "C", image: "./images/physics/13.png", year: "11" },
+            { question: "Fizika - 14. Uzdevums", answer: "C", image: "./images/physics/14.png", year: "11" },
+            { question: "Fizika - 15. Uzdevums", answer: "C", image: "./images/physics/15.png", year: "11" },
+            { question: "Fizika - 16. Uzdevums", answer: "D", image: "./images/physics/16.png", year: "11" },
+            { question: "Fizika - 17. Uzdevums", answer: "C", image: "./images/physics/17.png", year: "11" },
+            { question: "Fizika - 18. Uzdevums", answer: "D", image: "./images/physics/18.png", year: "11" },
+            { question: "Fizika - 19. Uzdevums", answer: "C", image: "./images/physics/19.png", year: "11" },
+            { question: "Fizika - 20. Uzdevums", answer: "A", image: "./images/physics/20.png", year: "11" },
+            { question: "Fizika - 21. Uzdevums (Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "BE", image: "./images/physics/21.png", year: "11" },
+            { question: "Fizika - 22. Uzdevums (Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "AC", image: "./images/physics/22.png", year: "11" },
+            { question: "Fizika - 23. Uzdevums (Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "AC", image: "./images/physics/23.png", year: "11" },
+            { question: "Fizika - 24. Uzdevums (Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "BDE", image: "./images/physics/24.png", year: "11" },
+            { question: "Fizika - 25. Uzdevums (Uzdevumam ir viena līdz trīs pareizās atbildes/Burtus rakstīt kopā, alfabēta secībā.)", answer: "ABE", image: "./images/physics/25.png", year: "11" }
         ];
 
         const mathoptQuestions = [
-            { question: "Matemātika - 1.", answer: "", image: "./images/mathopt/1.png", year: "16" },
-            { question: "Matemātika - 2.", answer: "", image: "./images/mathopt/2.png", year: "16" },
-            { question: "Matemātika - 3.", answer: "", image: "./images/mathopt/3.png", year: "16" },
-            { question: "Matemātika - 4.", answer: "", image: "./images/mathopt/4.png", year: "16" },
-            { question: "Matemātika - 5.", answer: "", image: "./images/mathopt/5.png", year: "16" },
-            { question: "Matemātika - 6.", answer: "", image: "./images/mathopt/6.png", year: "16" },
-            { question: "Matemātika - 7.", answer: "", image: "./images/mathopt/7.png", year: "16" },
-            { question: "Matemātika - 8.", answer: "", image: "./images/mathopt/8.png", year: "16" },
-            { question: "Matemātika - 9.", answer: "", image: "./images/mathopt/9.png", year: "16" },
-            { question: "Matemātika - 10.", answer: "", image: "./images/mathopt/10.png", year: "16" },
-            { question: "Matemātika - 11.", answer: "", image: "./images/mathopt/11.png", year: "16" },
-            { question: "Matemātika - 12.", answer: "", image: "./images/mathopt/12.png", year: "16" },
-            { question: "Matemātika - 13.", answer: "", image: "./images/mathopt/13.png", year: "16" },
-            { question: "Matemātika - 14.", answer: "", image: "./images/mathopt/14.png", year: "16" },
-            { question: "Matemātika - 15.", answer: "", image: "./images/mathopt/15.png", year: "16" },
-            { question: "Matemātika - 16.", answer: "", image: "./images/mathopt/16.png", year: "16" },
-            { question: "Matemātika - 17.", answer: "", image: "./images/mathopt/17.png", year: "16" },
-            { question: "Matemātika - 18.", answer: "", image: "./images/mathopt/18.png", year: "16" },
-            { question: "Matemātika - 19.", answer: "", image: "./images/mathopt/19.png", year: "16" },
-            { question: "Matemātika - 20.", answer: "", image: "./images/mathopt/20.png", year: "16" },
-            { question: "Matemātika - 21.", answer: "", image: "./images/mathopt/21.png", year: "16" },
-            { question: "Matemātika - 22.", answer: "", image: "./images/mathopt/22.png", year: "16" },
-            { question: "Matemātika - 23.", answer: "", image: "./images/mathopt/23.png", year: "16" },
-            { question: "Matemātika - 24.", answer: "", image: "./images/mathopt/24.png", year: "16" },
-            { question: "Matemātika - 25.", answer: "", image: "./images/mathopt/25.png", year: "16" }
+            { question: "Matemātika - 1. Uzdevums", answer: "", image: "./images/mathopt/1.png", year: "16" },
+            { question: "Matemātika - 2. Uzdevums", answer: "", image: "./images/mathopt/2.png", year: "16" },
+            { question: "Matemātika - 3. Uzdevums", answer: "", image: "./images/mathopt/3.png", year: "16" },
+            { question: "Matemātika - 4. Uzdevums", answer: "", image: "./images/mathopt/4.png", year: "16" },
+            { question: "Matemātika - 5. Uzdevums", answer: "", image: "./images/mathopt/5.png", year: "16" },
+            { question: "Matemātika - 6. Uzdevums", answer: "", image: "./images/mathopt/6.png", year: "16" },
+            { question: "Matemātika - 7. Uzdevums", answer: "", image: "./images/mathopt/7.png", year: "16" },
+            { question: "Matemātika - 8. Uzdevums", answer: "", image: "./images/mathopt/8.png", year: "16" },
+            { question: "Matemātika - 9. Uzdevums", answer: "", image: "./images/mathopt/9.png", year: "16" },
+            { question: "Matemātika - 10. Uzdevums", answer: "", image: "./images/mathopt/10.png", year: "16" },
+            { question: "Matemātika - 11. Uzdevums", answer: "", image: "./images/mathopt/11.png", year: "16" },
+            { question: "Matemātika - 12. Uzdevums", answer: "", image: "./images/mathopt/12.png", year: "16" },
+            { question: "Matemātika - 13. Uzdevums", answer: "", image: "./images/mathopt/13.png", year: "16" },
+            { question: "Matemātika - 14. Uzdevums", answer: "", image: "./images/mathopt/14.png", year: "16" },
+            { question: "Matemātika - 15. Uzdevums", answer: "", image: "./images/mathopt/15.png", year: "16" },
+            { question: "Matemātika - 16. Uzdevums", answer: "", image: "./images/mathopt/16.png", year: "16" },
+            { question: "Matemātika - 17. Uzdevums", answer: "", image: "./images/mathopt/17.png", year: "16" },
+            { question: "Matemātika - 18. Uzdevums", answer: "", image: "./images/mathopt/18.png", year: "16" },
+            { question: "Matemātika - 19. Uzdevums", answer: "", image: "./images/mathopt/19.png", year: "16" },
+            { question: "Matemātika - 20. Uzdevums", answer: "", image: "./images/mathopt/20.png", year: "16" },
+            { question: "Matemātika - 21. Uzdevums", answer: "", image: "./images/mathopt/21.png", year: "16" },
+            { question: "Matemātika - 22. Uzdevums", answer: "", image: "./images/mathopt/22.png", year: "16" },
         ];
 
         const mathaugQuestions = [
@@ -348,14 +333,6 @@
             { question: "Matemātika - 15.", answer: "", image: "./images/mathaug/15.png", year: "21" },
             { question: "Matemātika - 16.", answer: "", image: "./images/mathaug/16.png", year: "21" },
             { question: "Matemātika - 17.", answer: "", image: "./images/mathaug/17.png", year: "21" },
-            { question: "Matemātika - 18.", answer: "", image: "./images/mathaug/18.png", year: "21" },
-            { question: "Matemātika - 19.", answer: "", image: "./images/mathaug/19.png", year: "21" },
-            { question: "Matemātika - 20.", answer: "", image: "./images/mathaug/20.png", year: "21" },
-            { question: "Matemātika - 21.", answer: "", image: "./images/mathaug/21.png", year: "21" },
-            { question: "Matemātika - 22.", answer: "", image: "./images/mathaug/22.png", year: "21" },
-            { question: "Matemātika - 23.", answer: "", image: "./images/mathaug/23.png", year: "21" },
-            { question: "Matemātika - 24.", answer: "", image: "./images/mathaug/24.png", year: "21" },
-            { question: "Matemātika - 25.", answer: "", image: "./images/mathaug/25.png", year: "21" }
         ];
 
         const socialSciencesQuestions = [
@@ -372,17 +349,6 @@
             { question: "Sociālās Zinātnes - 11.", answer: "", image: "./images/social/11.png", year: "26"  },
             { question: "Sociālās Zinātnes - 12.", answer: "", image: "./images/social/12.png", year: "26"  },
             { question: "Sociālās Zinātnes - 13.", answer: "", image: "./images/social/13.png", year: "26"  },
-            { question: "Sociālās Zinātnes - 14.", answer: "", image: "./images/social/14.png", year: "26"  },
-            { question: "Sociālās Zinātnes - 15.", answer: "", image: "./images/social/15.png", year: "26"  },
-            { question: "Sociālās Zinātnes - 16.", answer: "", image: "./images/social/16.png", year: "26"  },
-            { question: "Sociālās Zinātnes - 17.", answer: "", image: "./images/social/17.png", year: "26"  },
-            { question: "Sociālās Zinātnes - 18.", answer: "", image: "./images/social/18.png", year: "26"  },
-            { question: "Sociālās Zinātnes - 19.", answer: "", image: "./images/social/19.png", year: "26"  },
-            { question: "Sociālās Zinātnes - 21.", answer: "", image: "./images/social/21.png", year: "26"  },
-            { question: "Sociālās Zinātnes - 22.", answer: "", image: "./images/social/22.png", year: "26"  },
-            { question: "Sociālās Zinātnes - 23.", answer: "", image: "./images/social/23.png", year: "26"  },
-            { question: "Sociālās Zinātnes - 24.", answer: "", image: "./images/social/24.png", year: "26"  },
-            { question: "Sociālās Zinātnes - 25.", answer: "", image: "./images/social/25.png", year: "26"  }
         ];
 
         const questionElement = document.getElementById("question");
