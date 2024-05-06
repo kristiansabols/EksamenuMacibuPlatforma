@@ -491,7 +491,7 @@
             { question: "Matemātika(2022) - Daļskaitļus rakstīt formātā (1/2)", answer: "1/5", image: "./images/mathopt/70.png", year: "11" },
             { question: "Matemātika(2022)", answer: "27", image: "./images/mathopt/71.png", year: "11" },
             { question: "Matemātika(2022) - Atbildē ierakstīt atbilstošu mērvienību", answer: "125,8 m", image: "./images/mathopt/72.png", year: "11" },
-            { question: "Matemātika(2022)", answer: "30000", image: "./images/mathopt/73.png", year: "11" },
+            { question: "Matemātika(2022)", answer: "30000", image: "./images/mathopt/73.png", year: "11" }
         ];
 
         const mathaugQuestions = [
@@ -586,6 +586,7 @@
             } else {
                 showModal();
             }
+            answerInput.value = "";
         });
 
         prevButton.addEventListener("click", function() {
@@ -595,6 +596,7 @@
             } else {
                 showModal();
             }
+            answerInput.value = "";
         });
 
         function showModal() {
@@ -754,6 +756,7 @@
             questionContainer.style.display = "none";
             subjectSelection.style.display = "block";
             feedback.textContent = "";
+            answerInput.value = "";
         });
 
     </script>
